@@ -7,10 +7,16 @@ namespace Learningcs
     {
         static void Main(string[] args)
         {
-            // Beep();
-            // PrintConsole("Hello World!");
-            // UserInput();
-            HypotenuseFinder();
+            //Beep();
+            //PrintConsole("Hello World!");
+            //UserInput();
+            //HypotenuseFinder();
+            //IfStatements();
+            //Switches();
+            //LogicalOperators();
+            //WhileLoop();
+            //ForLoop();
+            //NestedLoops();
         }
         static void Beep()
         {
@@ -128,5 +134,101 @@ namespace Learningcs
             // Insert for inserting a string at a specific index
             String userName = myName.Insert(0, "@");
         }
+        static void IfStatements()
+        {
+            bool isAdult = false;
+            
+            if(!isAdult)
+            {
+                Console.WriteLine("This page is 18+.");
+                return;
+            }
+            Console.WriteLine("Welcome to our page!");
+        }
+        static void Switches()
+        {
+            Console.WriteLine("What day is it today?");
+            String day = Console.ReadLine();
+
+            switch(day)
+            {
+                case "Sunday":
+                    Console.WriteLine("Hey today is a work day!");
+                    break;
+                case "Monday":
+                    Console.WriteLine("Hey today is a work day!");
+                    break;
+                case "Tuesday":
+                    Console.WriteLine("Hey today is a work day!");
+                    break;
+                case "Wednesday":
+                    Console.WriteLine("Hey today is a work day!");
+                    break;
+                case "Thursday":
+                    Console.WriteLine("Hey today is a work day!");
+                    break;
+                case "Friday":
+                    Console.WriteLine("Now it is the weekend 😎");
+                    break;
+                case "Saturday":
+                    Console.WriteLine("Now it is the weekend 😎");
+                    break;
+                default:
+                    Console.WriteLine("Error, enter correct input.");
+                    break;
+            }
+        }
+        static void LogicalOperators()
+        {
+            Console.WriteLine("What's the temperature outside: (C)");
+            double temp = Convert.ToDouble(Console.ReadLine());
+
+            if (temp >= 10 && temp <= 25)
+            {
+                Console.WriteLine("It's warm outside!");
+            }
+            else if (temp <= -50 || temp >= 50)
+            {
+                Console.WriteLine("DO NOT GO OUTSIDE");
+            }
+        }
+        static void WhileLoop()
+        {
+            int i = 0;
+            while(i <= 1200)
+            {
+                Console.Write("I LOVE YOU ");
+                i++;
+            }
+        }
+        static void ForLoop()
+        {
+            for (int i = 10; i > 0; i-- )
+            {
+                Console.WriteLine(i);
+            }
+            Console.WriteLine("HAPPY NEW YEAR!!!");
+        }
+        static void NestedLoops()
+        {
+            Console.WriteLine("How many columns?");
+            int columns = Convert.ToInt32(Console.ReadLine());
+
+            Console.WriteLine("How many rows?");
+            int rows = Convert.ToInt32(Console.ReadLine());
+
+            Console.WriteLine("What symbol do you want?");
+            char symbol = Convert.ToChar(Console.ReadLine());
+
+            for(int i = 0; i < rows; i++)
+            {
+                for (int j = 0; j < columns; j++)
+                {
+                    Console.Write(symbol);
+                }
+                Console.WriteLine();
+            }
+            
+        }   
     }
 }
