@@ -17,6 +17,8 @@ namespace Learningcs
             //WhileLoop();
             //ForLoop();
             //NestedLoops();
+            //NumberGuessingGame();
+            //RockPaperScissorsGame();
         }
         static void Beep()
         {
@@ -230,5 +232,111 @@ namespace Learningcs
             }
             
         }   
+        static void NumberGuessingGame()
+        {
+            Console.WriteLine("Hello this is a Number guessing game.");
+                        
+            bool playAgain = true;        
+            while (playAgain)
+            {
+                Random random = new Random();
+                int theNum = random.Next(1, 101);
+                int guesses = 0;
+
+                Console.WriteLine("Pick a number between 1-100.");
+                int userNum = Convert.ToInt32(Console.ReadLine());
+
+                while (theNum != userNum)
+                {
+                    if (userNum < theNum)
+                    {
+                        if (theNum - userNum < 10)
+                        {
+                            Console.WriteLine("No, higher");
+                            userNum = Convert.ToInt32(Console.ReadLine());
+                            guesses++;
+                        }
+                        else
+                        {
+                            Console.WriteLine("No, way higher");
+                            userNum = Convert.ToInt32(Console.ReadLine());
+                            guesses++;
+                        }
+                    }
+                    if (userNum > theNum)
+                    {
+                        if (userNum - theNum < 10)
+                        {
+                            Console.WriteLine("No, lower");
+                            userNum = Convert.ToInt32(Console.ReadLine());
+                            guesses++;
+                        }
+                        else
+                        {
+                            Console.WriteLine("No, way lower");
+                            userNum = Convert.ToInt32(Console.ReadLine());
+                            guesses++;
+                        }
+                    }
+                }
+                Console.WriteLine("That's right!! You did it in {0} guesses", guesses);
+                Console.WriteLine("do you want to play again? (y or n)");
+                char userPlayAgain = Convert.ToChar(Console.ReadLine());
+                if (userPlayAgain == 'n')
+                {
+                    playAgain = false;
+                }
+            }
+        }
+        static void RockPaperScissorsGame()
+        {
+            Console.WriteLine("Hello this is a Rock-Paper-Scissors game!");
+
+            bool playAgain = true;
+            Random random = new Random();
+            while (playAgain)
+            {
+                Console.WriteLine("What will you do? (Rock, Paper, Scissors)");
+                String[] array = { "rock", "paper", "scissors" };
+                int arrayIndex = random.Next(0, array.Length - 1);
+                String computerPick = array[arrayIndex];
+                String userPick = Convert.ToString(Console.ReadLine());
+                userPick = userPick.ToLower();
+
+                if (userPick != "rock" && userPick != "paper" && userPick != "scissors")
+                {
+                    Console.WriteLine("incorrect input, Make sure you spell it right.");
+                }
+
+                if (userPick == computerPick)
+                {
+                    Console.WriteLine("Your pick: " + userPick);
+                    Console.WriteLine("Computer pick: " + computerPick);
+                    Console.WriteLine("DRAW");
+                }
+                // user winning logic
+                else if (userPick == "rock" && computerPick == "scissors" || userPick == "scissors" && computerPick == "paper" || userPick == "paper" && computerPick == "rock")
+                {
+                    Console.WriteLine("Your pick: " + userPick);
+                    Console.WriteLine("Computer pick: " + computerPick);
+                    Console.WriteLine("YOU WIN!!");
+                }
+                // computer winning logic 
+                else if (computerPick == "rock" && userPick == "scissors" || computerPick == "scissors" && userPick == "paper" || computerPick == "paper" && userPick == "rock")
+                {
+                    Console.WriteLine("Your pick: " + userPick);
+                    Console.WriteLine("Computer pick: " + computerPick);
+                    Console.WriteLine("COMPUTER WINS!!.");
+                }
+                Console.WriteLine();
+                Console.WriteLine("Would you like to play again? (Y/N)");
+                String userPlayAgain = Console.ReadLine();
+                userPlayAgain = userPlayAgain.ToUpper();
+                if (userPlayAgain != "Y")
+                {
+                    playAgain = false;
+                }
+            }
+        }
     }
 }
