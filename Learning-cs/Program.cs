@@ -1,8 +1,13 @@
-﻿using System;
+﻿using Learning_cs;
+using System;
+using System.Collections.Concurrent;
+using System.Security.Cryptography;
 
 
 namespace Learningcs
 {
+    // class = A bundle of related code.
+    //         Can be used as a blueprint to create objects (OOP)
     class Program
     {
         static void Main(string[] args)
@@ -19,6 +24,19 @@ namespace Learningcs
             //NestedLoops();
             //NumberGuessingGame();
             //RockPaperScissorsGame();
+            //SimpleCalculator();
+            //Arrays();   
+            //Console.WriteLine(ReturnARandomColor());
+            //Console.WriteLine(Multiply(4, 5));
+            //Console.WriteLine(Multiply(4, 5, 7));
+            //Console.WriteLine(ParamsKeyword(1, 2, 5, 4, 2, 87, 4, 23, 43, 4, 5, 20));
+            //ExceptionHandlers();
+            //ConditionalOperator();
+            //StringInterpolation();
+            //MultidimensionalArrays();
+            Messages.Hello();
+            Messages.Error();
+            Messages.Warning();
         }
         static void Beep()
         {
@@ -336,6 +354,199 @@ namespace Learningcs
                 {
                     playAgain = false;
                 }
+            }
+        }
+        static void SimpleCalculator()
+        {
+            Console.WriteLine("Hello this is a calculator program, it can do sum, sub, multiply, and divide.");
+            Console.Write("First number:");
+            double userFirstNum = Convert.ToDouble(Console.ReadLine());
+            Console.Write("Second number:");
+            double userSecondNum = Convert.ToDouble(Console.ReadLine());
+
+            String userOp = "";
+            while (userOp != "+" && userOp != "-" && userOp != "*" && userOp != "/")
+            {
+            Console.WriteLine("What operation would you like? (sum: +, sub: -, multiply: *, divide: /)");
+            userOp = Console.ReadLine();
+            }
+            double result = 0;
+            switch (userOp)
+            {
+                case "+":
+
+                    result = userFirstNum + userSecondNum;
+                    break;
+                case "-":
+                    result = userFirstNum - userSecondNum;
+                    break;
+                case "*":
+                    result = userFirstNum * userSecondNum;
+                    break;
+                case "/":
+                    result = userFirstNum / userSecondNum;
+                    break;
+            }
+            Console.Write(userFirstNum + " " + userOp + " " + userSecondNum + " = " + result );
+        }
+        static void Arrays()
+        {
+            // There are two ways to create an array,
+
+            // first way is to do everything in one line,
+            String[] array1 = { "hello", "world", "!!" };
+
+            // second way is to declare the arr ay and then assign values to it.
+            String[] array2 = new string[3]; //3 is how many spots will the array have
+            array2[0] = "hello";
+            array2[1] = "world";
+            array2[2] = "!!";
+
+
+
+            
+            // there are two ways to loop every item the array has,
+            
+            // first way is the classic way,
+            for (int i = 0; i < array1.Length; i++)
+            {
+                Console.WriteLine(array1[i]);
+            }
+            // second way is to do the built in method foreach loop.
+            foreach (String array in array2)
+            {
+                Console.Write(array);
+            }
+        }
+        static String ReturnARandomColor()
+        {
+            Random random = new Random();
+            String[] colors = { "Red", "Pink", "Black", "White", "Blue", "Green", "Yellow" };
+            int randomNum = random.Next(0, colors.Length);
+            return colors[randomNum];
+        }
+        static double Multiply(double a, double b)
+        {
+            //this is an example of method overloading
+            return a * b;
+        }
+        static double Multiply(double a, double b, double c)
+        {
+            //this is an example of method overloading
+            return a * b * c;
+        }
+        static double ParamsKeyword(params double[] nums)
+        {
+            double result = 0;
+            foreach (double num in nums)
+            {
+                result += num;
+            }
+            return result;
+        }
+        static void ExceptionHandlers()
+        {
+            // exception = errors that occur during execution
+
+            //        try     = try some code that is considered "dangerous"
+            //        catch   = catches and handles exceptions when they occur
+            //        finally = always executes regardless if exception is caught or not
+
+            int x;
+            int y;
+            double result;
+
+            try
+            {
+                Console.Write("Enter number 1: ");
+                x = Convert.ToInt32(Console.ReadLine());
+
+                Console.Write("Enter number 2: ");
+                y = Convert.ToInt32(Console.ReadLine());
+
+                result = x / y;
+
+                Console.WriteLine("result: " + result);
+            }
+            catch (FormatException e)
+            {
+                Console.WriteLine("Enter ONLY numbers PLEASE!");
+            }
+            catch (DivideByZeroException e)
+            {
+                Console.WriteLine("You can't divide by zero! IDIOT!");
+            } 
+            catch (Exception e)// will handle all exceptions not mentioned above.
+            {
+                Console.WriteLine("Something went wrong!");
+            }
+            finally
+            {
+                Console.WriteLine("Thanks for visiting!");
+            }
+        }
+        static void ConditionalOperator()
+        {
+            // conditional operator = used in conditional assignment if a condition is true/false
+
+            //(condition) ? x : y
+
+            double temperature = 20;
+            String message;
+
+            message = (temperature >= 15) ? "It's warm outside!" : "It's cold outside!";
+
+            Console.WriteLine(message);
+        }
+        static void StringInterpolation()
+        {
+            // there are two ways to string interpolate a string,
+            String firstName = "Osama";
+            String lastName = "Siran";
+            int age = 19;
+
+            // first way is the classic way,
+            Console.WriteLine("Hello " + firstName + " " + lastName + ".");
+            Console.WriteLine("You are " + age + " years old.");
+
+            // second way is to put a $ before the string and {} are placeholders for variables
+            Console.WriteLine($"Hello {firstName} {lastName}.");
+            Console.WriteLine($"You are {age, -10} years old.");
+        }
+        static void MultidimensionalArrays()
+        {
+            //I will organize the data like so: "name", "color1", "color2", "color3"...
+            String[,] colorLovers = { 
+                { "Osama", "Pink", "White", "Blue" },
+                { "Osama Zahrani", "Blue", "Black", "White"},
+                { "Muath", "Green", "Skyblue", "Violet" }
+            };
+            colorLovers[2, 3] = "White";
+            //foreach will inteligently loop every item, not customizable though.
+            foreach (String elements in colorLovers)
+            { 
+                //Console.WriteLine(elements);
+            }
+            //I will use nested for loops so I can have more control of the outcome.
+            for (int i = 0; i < colorLovers.GetLength(0); i++) 
+                //GetLength(num) num means the dimension,
+                //so the first dimension is 0 (just like a regular .length),
+                //the second dimension is 1...
+            {  
+                for (int j = 0; j < colorLovers.GetLength(1); j++)
+                {
+                    if (j == 0)
+                    {
+                        String name = colorLovers[i, 0];
+                        Console.WriteLine($"{name} Loves:");
+                    } else
+                    {
+                        String color = colorLovers[i, j];
+                        Console.Write(color + " ");
+                    }
+                }
+                Console.WriteLine();
+                Console.WriteLine();
             }
         }
     }
