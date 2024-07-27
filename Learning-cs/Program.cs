@@ -6,8 +6,28 @@ using System.Security.Cryptography;
 
 namespace Learningcs
 {
+
+
     // class = A bundle of related code.
     //         Can be used as a blueprint to create objects (OOP)
+
+
+    // object = An instance of a class
+    //          A class can be used as a blueprint to create objects (OOP)
+    //          objects can have fields & methods (characteristics & actions)\
+
+
+    // constructor = A special method in a class
+    //               Same name as the class name
+    //               Can be used to assign arguments to fields when creating an object
+
+
+    // static = modifier to declare a static member, which belongs to the class itself
+    //          rather than to any specific object  \
+    //                                    NOTE: if you put static to a class you will not be able to
+    //                                    create objects from it
+
+
     class Program
     {
         static void Main(string[] args)
@@ -34,9 +54,26 @@ namespace Learningcs
             //ConditionalOperator();
             //StringInterpolation();
             //MultidimensionalArrays();
-            Messages.Hello();
-            Messages.Error();
-            Messages.Warning();
+            //Messages.Hello();
+            //Messages.Error();
+            //Messages.Warning();
+            //Console.WriteLine(Cat.numberOfCats);
+            //Cat cat1 = new Cat("Lily", 7, "black");
+            //Cat cat2 = new Cat("Mirai", 5, "orange");
+            //Cat cat3 = new Cat("Milky", "white dotted black");
+            //Cat cat4 = new Cat("Losty");
+            //Console.WriteLine(Cat.numberOfCats);
+
+            //cat1.Meow();
+            //cat1.Sleep();
+
+            //cat2.Meow();
+            //cat2.Sleep();
+
+            //cat3.GetAge();
+
+            //NaughtyCat naughty1 = new NaughtyCat("nono", 3, "orange", "grew up without a family", 1);
+            //naughty1.GetAge();
         }
         static void Beep()
         {
@@ -548,6 +585,71 @@ namespace Learningcs
                 Console.WriteLine();
                 Console.WriteLine();
             }
+        }
+    }
+    class Cat
+    {
+        String name;
+        int age;
+        String color;
+        public static int numberOfCats;
+
+        public Cat ()
+        {
+            numberOfCats++;
+        }
+        public Cat(string name, int age, string color)
+        {
+            numberOfCats++;
+            this.name = name;
+            this.age = age;
+            this.color = color;
+        }
+        public Cat(string name, string color)
+        {
+            numberOfCats++;
+            this.name = name;
+            this.color = color;
+        }public Cat(string name)
+        {
+            numberOfCats++;
+            this.name = name;
+            this.age = 0;
+            this.color = "Unkown";
+        }
+
+
+
+        public void Meow()
+        {
+            Console.WriteLine(name + " is meowwing");
+        }
+        public void Sleep()
+        {
+            Console.WriteLine(name + " is sleeping");
+        }
+        public void GetAge()
+        {
+            Console.WriteLine(name + " is " + age + " years old");
+        }
+        public void AssigningValues(string name, int age, string color)
+        {
+            this.name = name;
+            this.age = age;
+            this.color = color;
+        }
+
+    }
+    class NaughtyCat : Cat
+    {
+        String status;
+        int punishmentYears;
+
+        public NaughtyCat (string name, int age, string color, String status, int punishmentYears)
+        {
+            this.AssigningValues(name, age, color);
+            this.status = status;
+            this.punishmentYears = punishmentYears;
         }
     }
 }

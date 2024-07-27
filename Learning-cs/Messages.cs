@@ -18,7 +18,7 @@ namespace Learning_cs
         }
         public static void Error() 
         { 
-            Console.WriteLine("Error, something went wrong");
+            Console.WriteLine("Error, something went wrong"); 
         }
     }
 }
