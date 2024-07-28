@@ -1,6 +1,12 @@
 ﻿using Learning_cs;
 using System;
 using System.Collections.Concurrent;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Diagnostics;
+using System.Drawing;
+using System.Runtime.ConstrainedExecution;
+using System.Runtime.InteropServices;
 using System.Security.Cryptography;
 
 
@@ -26,6 +32,23 @@ namespace Learningcs
     //          rather than to any specific object  \
     //                                    NOTE: if you put static to a class you will not be able to
     //                                    create objects from it
+
+
+    // interface = defines a "contract" that all the classes inheriting from should follow
+    //             An interface declares "what a class should have"
+    //             An inheriting class defines "how it should do it"
+    //             Benefit = security + multiple inheritance + "plug-and-play"
+
+
+    //getters & setters = add security to fields by encapsulation
+    //                    They're accessors found within properties
+
+    // properties = combine aspects of both fields and methods (share name with a field)
+    // get accessor = used to return the property value
+    // set accessor = used to assign a new value
+    // value keyword = defines the value being assigned by the set (parameter)
+
+
 
 
     class Program
@@ -58,12 +81,13 @@ namespace Learningcs
             //Messages.Error();
             //Messages.Warning();
             //Console.WriteLine(Cat.numberOfCats);
-            //Cat cat1 = new Cat("Lily", 7, "black");
-            //Cat cat2 = new Cat("Mirai", 5, "orange");
-            //Cat cat3 = new Cat("Milky", "white dotted black");
-            //Cat cat4 = new Cat("Losty");
+            /*
+            Cat cat1 = new Cat("Lily", 7, "black");
+            Cat cat2 = new Cat("Mirai", 5, "orange");
+            Cat cat3 = new Cat("Milky", "white dotted black");
+            Cat cat4 = new Cat("Losty");
+            */
             //Console.WriteLine(Cat.numberOfCats);
-
             //cat1.Meow();
             //cat1.Sleep();
 
@@ -74,6 +98,36 @@ namespace Learningcs
 
             //NaughtyCat naughty1 = new NaughtyCat("nono", 3, "orange", "grew up without a family", 1);
             //naughty1.GetAge();
+
+            /*
+            Animal animal1 = new Animal();
+            Human human1 = new Human();
+            Plant plant1 = new Plant();
+            */
+            //animal1.Breathe();
+            //human1.Breathe();
+            //plant1.Breathe();
+
+            //Console.WriteLine(cat1.ToString());
+            //Console.WriteLine(cat2);
+
+            /*
+            Creature[] creatures = { animal1, human1, plant1 };
+
+            foreach (Creature creature in creatures)
+            {
+                creature.Breathe();
+            }
+            */
+
+            //Lists();
+            /*
+            TryingGetSet test1 = new TryingGetSet(20, "idk");
+            test1.Age = 24;
+            test1.Age = -21;
+            test1.Age = 2421;
+            Console.WriteLine(test1.Age);
+            */
         }
         static void Beep()
         {
@@ -586,6 +640,126 @@ namespace Learningcs
                 Console.WriteLine();
             }
         }
+        static void ArrayOfObjects ()
+        {
+            Cat cat1 = new Cat("Cutie");
+            Cat cat2 = new Cat("Catie");
+            Cat cat3 = new Cat("Caty");
+
+            Cat[] arrayOfCats = { cat1, cat2, cat3 };
+
+
+
+
+            // another way of declaring and assigning objects without naming them: (anonymous objects), and saving them in an array
+            Cat[] arrayOfAnonymousCats = { new Cat("Cutie"), new Cat("Catie"), new Cat("Caty") };
+        }
+        static void Lists()
+        {
+            //List is an advanced version of array with many useful methods but it consumes more memory than array .
+
+
+            //Method of list
+
+            //Declare a list
+
+
+            //List<String> strList = new List<String>();
+            // style 1
+
+            //List<String> strList = new();
+            // style 2 (quicker)
+
+            //Add / Insert / Remove an element
+
+
+            //Add an element
+
+
+            //strList.Add("a");
+
+            //Insert an element
+
+
+            //strList.Insert(1, "b");
+            // 1 = index
+
+            //Remove an element
+
+
+            //strList.Remove("a");
+
+            //Size of a list
+
+
+            //strList.Count()
+
+
+            //Index of a specific element
+
+            //First index
+
+
+            //strList.IndexOf("a");
+
+            //Last index
+
+
+            //strList.LastIndexOf("a");
+
+            //Check whether a list contains a specific element
+
+
+            //strList.Contains("a");
+
+            //Sort the list
+
+            //Sort the list alphabetically
+
+
+            //strList.Sort();
+
+            //Sort the list anti-alphabetically
+
+
+            //strList.Reverse();
+
+            //Clear the list
+
+
+            //strList.Clear();
+
+            //Switch between array and list
+
+            //Convert from array to list
+
+
+            //List<String> strList = strArray.ToList();
+            // style 1
+
+            //List<String> strList = new();
+            //strList.AddRange(strArray);
+            // style 2
+
+            //Convert from list to array
+
+            //String[] strArray = strList.ToArray();
+
+            List<Cat> listOfCats = new List<Cat>();
+
+            Cat cat1 = new Cat("Lily", 7, "black");
+            Cat cat2 = new Cat("Mirai", 5, "orange");
+            Cat cat3 = new Cat("Milky", "white dotted black");
+            Cat cat4 = new Cat("Losty");
+
+            listOfCats.Add(cat1);
+            listOfCats.AddRange(new Cat[] { cat2, cat3, cat4 });
+
+            foreach (Cat cat in listOfCats) 
+            {
+                Console.WriteLine(cat);            
+            }
+        }
     }
     class Cat
     {
@@ -618,6 +792,10 @@ namespace Learningcs
             this.color = "Unkown";
         }
 
+        public override string ToString()
+        {
+            return $"name: {name}, age: {age}, color: {color}";
+        }
 
 
         public void Meow()
@@ -652,4 +830,126 @@ namespace Learningcs
             this.punishmentYears = punishmentYears;
         }
     }
+
+
+
+    abstract class Creature //Used the keyword (abstract) to prevent intilizing objects form this class,                       
+    //You will no longer be able to:
+    //Creature creature1 = new Creature(); 
+
+    {
+        String type;
+        public virtual void Breathe()
+        {
+            Console.WriteLine("this creature is breathing");
+        }
+    }
+
+    class Animal : Creature
+    {
+        String scientificName;
+        int age;
+
+
+        public override void Breathe()
+        {
+            Console.WriteLine("this animal is breathing");
+        }
+    }
+
+    class Human : Creature
+    {
+        String name;
+        int age;
+
+        public override void Breathe()
+        {
+            Console.WriteLine("this human is breathing");
+        }
+    }
+
+    class Plant : Creature
+    {
+        String scientificName;
+
+        public override void Breathe()
+        {
+            Console.WriteLine("this plant is breathing");
+        }
+    }
+
+
+    interface IPrey
+    {
+        void Flee();
+    }
+    interface IPredator
+    {
+        void Hunt();
+    }
+
+
+    class Deer : IPrey
+    {
+        public void Flee() 
+        {
+            Console.WriteLine("The deer is running away!");
+        }
+    }
+    class Hawk : IPredator 
+    {
+        public void Hunt()
+        {
+            Console.WriteLine("The hawk is searching for food.");
+        }
+    }
+    class Fish : IPrey, IPredator 
+    { 
+        public void Flee()
+        {
+            Console.WriteLine("The fish is swimming away!");
+        }
+        public void Hunt()
+        {
+            Console.WriteLine("The fish is searching for smaller fish.");
+        }
+    }
+
+
+    class TryingGetSet 
+    {
+        private int age;
+
+        public TryingGetSet (int age, String name)
+        {
+            this.Age = age;
+            this.Name = name;
+        }
+
+        public int Age
+        {
+            get { return age; }
+            set
+            {
+                if (value < 0 || value > 100)
+                {
+                    return;
+                } else
+                {
+                age = value;
+                }
+            }
+        }
+
+
+
+
+        // auto-Implemented property =  shortcut when no additional logic is required in the property
+        //                                you do not have to define a field for a property,
+        //                                you only have to write get; and/or set; inside the property    
+
+
+        public String Name { get; set; }
+    }
+
 }
