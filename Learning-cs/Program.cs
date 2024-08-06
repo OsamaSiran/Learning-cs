@@ -48,7 +48,42 @@ namespace Learningcs
     // set accessor = used to assign a new value
     // value keyword = defines the value being assigned by the set (parameter)
 
+    // enums = special "class" that contains a set of named integer constants.
+    //         Use enums when you have values that you know will not change,
+    //         To get the integer value from an item, you must explicitly convert to an int
 
+    // generic =  "not specific to a particular data type"
+    //            add <T> to: classes, methods, fields, etc.
+    //            allows for code reusability for different data types
+
+    // thread = an execution path of a program
+    //          We can use multiple threads to perform,
+    //          different tasks of our program at the same time.
+    //          Current thread running is "main" thread
+    //          using System.Threading;
+
+    enum Planets
+    {
+        Mercury = 1,
+        Venus = 2,
+        Earth = 3,
+        Mars = 4,
+        Jupiter = 5,
+        Saturn = 6,
+        Uranus = 7,
+        Neptune = 8
+    }
+    enum PlanetRadius 
+    {
+        Mercury = 2439,
+        Venus = 6051,
+        Earth = 6371,
+        Mars = 3389,
+        Jupiter = 69911,
+        Saturn = 58232,
+        Uranus = 25362,
+        Neptune = 24622
+    }
 
 
     class Program
@@ -127,6 +162,70 @@ namespace Learningcs
             test1.Age = -21;
             test1.Age = 2421;
             Console.WriteLine(test1.Age);
+            */
+
+            /*
+            String planetName = Planets.Mars.ToString();            // if you assign the value to a variable using an enum, you have to type ToString()
+            
+            Console.WriteLine("Planet: " + planetName + " and is the #" + (int)Planets.Mars);
+            
+            Console.WriteLine("Radius: " + (int)PlanetRadius.Mars);
+
+            double volume = Volume(PlanetRadius.Earth);
+            Console.WriteLine("Volume: " + volume);
+            */
+
+            /*
+            String[] favColors = { "Pink", "White", "Blue" };
+            int[] favNums = { 4, 7, 44 };
+            bool[] bools = { true, true, false, true, false, false, false, true, true };
+
+            DisplayElements(favColors);
+            DisplayElements(favNums);
+            DisplayElements(bools);
+            */
+
+
+            /*
+
+            //I will practice multithreading here 
+            
+            static void CountDown()
+            {
+                for (int i = 10; i >= 0; i--)
+                {
+                    Console.WriteLine("Timer #1 : " + i + " seconds");
+                    Thread.Sleep(1000);
+                }
+                Console.WriteLine("Timer #1 is complete!");
+            }
+            static void CountUp()
+            {
+                for (int i = 0; i <= 10; i++)
+                {
+                    Console.WriteLine("Timer #2 : " + i + " seconds");
+                    Thread.Sleep(1000);
+                }
+                Console.WriteLine("Timer #2 is complete!");
+            }
+            static void CountUpWithParameter(String name) 
+            {
+                for (int i = 0; i <= 10; i++)
+                {
+                    Console.WriteLine("Timer #2 : " + i + " seconds");
+                    Thread.Sleep(1000);
+                }
+                Console.WriteLine("Timer #2 is complete!");
+            }
+
+
+            Thread mainThread = Thread.CurrentThread;
+
+            Thread thread1 = new Thread(CountDown); 
+            Thread thread2 = new Thread(CountUp); 
+            Thread thread3 = new Thread(() => CountUpWithParameter("Hello")); //If the method has a parameter, must use the lambda expression
+            thread1.Start();
+            thread2.Start();
             */
         }
         static void Beep()
@@ -760,6 +859,22 @@ namespace Learningcs
                 Console.WriteLine(cat);            
             }
         }
+        static double Volume(PlanetRadius radius)
+        {
+            //This is a practice of enums.
+            double result = (4.0 / 3.0) * Math.PI * Math.Pow((int)radius, 3);
+            return result;
+        }
+        static void DisplayElements<T>(T[] array)
+        {
+            foreach (T thing in array)
+            {
+                Console.Write(thing + " ");
+            }
+            Console.WriteLine();
+            Console.WriteLine();
+        }
+        
     }
     class Cat
     {
